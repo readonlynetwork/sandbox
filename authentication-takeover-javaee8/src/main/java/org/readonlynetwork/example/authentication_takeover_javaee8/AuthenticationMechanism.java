@@ -17,12 +17,12 @@ package org.readonlynetwork.example.authentication_takeover_javaee8;
 
 import java.util.Objects;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.AuthenticationStatus;
+import javax.security.enterprise.authentication.mechanism.http.AutoApplySession;
 import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
 import javax.security.enterprise.authentication.mechanism.http.HttpMessageContext;
-import javax.security.enterprise.authentication.mechanism.http.RememberMe;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,13 +31,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author readonlynetwork.org
  */
-@RememberMe(
-		cookieHttpOnly = true,//kick ass of JavaScript
-		cookieMaxAgeSeconds = 3600,//max seconds
-		cookieSecureOnly = false//FIXME: should be true if HTTPS is available
-)
-@ApplicationScoped
+@RequestScoped
+@AutoApplySession
 public class AuthenticationMechanism implements HttpAuthenticationMechanism {
+	public static final String LOGIN_PAGE = "/WEB-INF/login.jsp";
+	public static final String ERROR_PAGE = "/WEB-INF/error.jsp";
 
 	public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response,
 			HttpMessageContext httpMessageContext) throws AuthenticationException {
@@ -48,6 +46,7 @@ public class AuthenticationMechanism implements HttpAuthenticationMechanism {
 	    
         //only for protected pages
 	    if(httpMessageContext.isProtected()) {
+	    	
 	    	//FIXME: use database and hashed password
 	    	//simple user
 		    if(Objects.equals("test", username) && Objects.equals("test1", password)) {
@@ -59,12 +58,21 @@ public class AuthenticationMechanism implements HttpAuthenticationMechanism {
 		    	return httpMessageContext.notifyContainerAboutLogin(UserAndRole.getValidationResult(username));
 		    }
 		    
-		    //invalid login
-		    return httpMessageContext.forward("/login");
+		    //other
+		    if(Objects.equals("other", username) && Objects.equals("other", password)){
+		    	return httpMessageContext.notifyContainerAboutLogin(UserAndRole.getValidationResult(username));
+		    }
+		    
+		    if(username == null && password == null) {
+		    	//forward to login (keep the original url)
+		    	return httpMessageContext.forward(LOGIN_PAGE);
+		    }else {
+		    	//invalid login data
+		    	return httpMessageContext.forward(ERROR_PAGE);
+	    	}
 		}
 		
 	    //regular pages
 		return httpMessageContext.doNothing();
 	}
-
 }

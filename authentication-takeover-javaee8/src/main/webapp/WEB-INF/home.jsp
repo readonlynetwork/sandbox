@@ -22,6 +22,7 @@ Copyright 2019 readonlynetwork.org
 </head>
 <body>
 	<h1>Authentication Takeover in Java EE 8</h1>
-	<p>This example is tested with Wildfly!</p>
+	<p>This example is tested with Wildfly 16.0 (Java EE 8 Full)!</p>
+	<p><a href="secret">Go to "Secret" page!</a></p>
 </body>
 </html>

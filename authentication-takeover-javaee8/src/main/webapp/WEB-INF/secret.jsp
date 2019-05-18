@@ -1,3 +1,4 @@
+<%@ page import="org.readonlynetwork.example.authentication_takeover_javaee8.LoginRole"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- 
@@ -22,6 +23,15 @@ Copyright 2019 readonlynetwork.org
 </head>
 <body>
 	<h1>Secret Page</h1>
-	<p>This example is tested with Wildfly!</p>
+	<p>User: <%= request.getRemoteUser() %></p>
+	<p>Is admin: <%
+		if(request.isUserInRole(LoginRole.ADMIN.getRoleName())){
+			out.append("yes");
+		}else{
+			out.append("no");
+		}
+	%></p>
+	<p><a href="home">Go home</a></p>
+	<p><a href="logout">Log out</a></p>
 </body>
 </html>

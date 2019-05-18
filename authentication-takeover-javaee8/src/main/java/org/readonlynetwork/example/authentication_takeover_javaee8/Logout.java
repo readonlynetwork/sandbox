@@ -15,35 +15,24 @@
  */
 package org.readonlynetwork.example.authentication_takeover_javaee8;
 
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * Roles form web.xml
- * 
- * @author readonlynetwork.org
- *
+ * Simple log out servlet
  */
-public enum LoginRole {
-	ADMIN("Admin"),
-	USER("User"),
-	OTHER("Other");
-	
-	private String role;
-	
-	private LoginRole(String role){
-		this.role = role;
+@WebServlet(urlPatterns = "/logout")
+public class Logout extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.logout();
+		response.sendRedirect("home");
 	}
 
-	/**
-	 * @return the name of the role
-	 */
-	public String getRoleName() {
-		return this.role;
-	}
-	
-	/**
-	 * @see #getRoleName()
-	 */
-	@Override
-	public String toString() {
-		return this.role;
-	}
 }

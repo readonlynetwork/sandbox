@@ -21,7 +21,15 @@ Copyright 2019 readonlynetwork.org
 <title>Authentication Takeover in Java EE 8</title>
 </head>
 <body>
-	<h1>Login Error Page</h1>
-	<p>:(</p>
+	<% if(request.getUserPrincipal() == null){ %>
+		<h1>Login Error Page</h1>
+		<p>:(</p>
+		<p><a href="secret">Go back</a></p>
+	<% }else{ %>
+		<h1>Access Error Page</h1>
+		<p>:(</p>
+		<p><a href="home">Go home</a></p>
+		<p><a href="logout">Log out</a></p>
+	<% } %>
 </body>
 </html>

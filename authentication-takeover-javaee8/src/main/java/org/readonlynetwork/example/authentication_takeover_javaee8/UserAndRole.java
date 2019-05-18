@@ -32,13 +32,19 @@ public class UserAndRole {
 			case "admin":
 				return new CredentialValidationResult(
     					name,
-    					new HashSet<>(Arrays.asList(LoginRole.ADMIN.getRole()))
+    					new HashSet<>(Arrays.asList(LoginRole.ADMIN.getRoleName(), LoginRole.OTHER.getRoleName()))
     					);
 				
 			case "test":
 				return new CredentialValidationResult(
     					name,
-    					new HashSet<>(Arrays.asList(LoginRole.USER.getRole()))
+    					new HashSet<>(Arrays.asList(LoginRole.USER.getRoleName(), LoginRole.OTHER.getRoleName()))
+    					);
+				
+			case "other":
+				return new CredentialValidationResult(
+    					name,
+    					new HashSet<>(Arrays.asList(LoginRole.OTHER.getRoleName()))
     					);
 	
 			default:
