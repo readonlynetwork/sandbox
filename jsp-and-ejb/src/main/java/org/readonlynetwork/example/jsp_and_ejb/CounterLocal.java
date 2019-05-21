@@ -23,6 +23,6 @@ import javax.ejb.Local;
  * @author readonlynetwork.org
  */
 @Local
-public interface Counter {
+public interface CounterLocal {
 	public int getNumber();
 }

@@ -37,7 +37,7 @@ public class BasicExample extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	private Counter counter;
+	private CounterLocal counter;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();

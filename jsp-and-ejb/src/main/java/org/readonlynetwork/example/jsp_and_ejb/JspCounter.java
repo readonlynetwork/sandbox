@@ -28,7 +28,7 @@ public class JspCounter {
 	public int getNumber() throws NamingException {
 		InitialContext context = new InitialContext();
 		//tested on Wildfly 16.0
-		Counter counter = (Counter)context.lookup("java:global/jsp-and-ejb/counter");
+		CounterLocal counter = (CounterLocal)context.lookup("java:module/counter");
 		return counter.getNumber();
 	}
 }

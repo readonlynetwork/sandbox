@@ -16,6 +16,8 @@
 package org.readonlynetwork.example.jsp_and_ejb;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -26,15 +28,16 @@ import javax.ejb.Startup;
  */
 @Startup
 @Singleton(name = "counter")
-public class CounterImpl implements Counter{
+@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
+public class CounterImpl implements CounterLocal{
 	private int number;
 	
 	@PostConstruct
-	public void init() {
+	private void init() {
 		this.number = 10;
 	}
 
-	public int getNumber() {
+	public synchronized int getNumber() {
 		return this.number++;
 	}
 
