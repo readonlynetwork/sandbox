@@ -22,7 +22,8 @@ limitations under the License.
 	<display-name>JSP and EJB</display-name>
   
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/index.jsp</welcome-file>
+		<!-- servlet as root -->
+		<welcome-file>/home</welcome-file>
 	</welcome-file-list>
   
 	<!-- home -->
@@ -32,9 +33,5 @@ limitations under the License.
 		<!-- Precompile .jsp -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<servlet-mapping>
-	    <servlet-name>home</servlet-name>
-	    <url-pattern>/home</url-pattern>
-	</servlet-mapping>
 
 </web-app>

@@ -1,5 +1,4 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="counter" class="org.readonlynetwork.example.jsp_and_ejb.JspCounter" scope="application"></jsp:useBean>
 <!DOCTYPE html>
 <!-- 
 Copyright 2019 readonlynetwork.org
@@ -23,6 +22,6 @@ Copyright 2019 readonlynetwork.org
 </head>
 <body>
 	<h1>JSP and EJB</h1>
-	<p>Counter: <%= counter.getNumber() %></p>
+	<p>Counter: ${counter}.</p>
 </body>
 </html>
