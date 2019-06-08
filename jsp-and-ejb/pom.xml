@@ -7,8 +7,7 @@
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   
-  <name>jsp-and-ejb Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <name>jsp-and-ejb</name>
   
   <properties>
  	<maven.compiler.source>1.8</maven.compiler.source>
