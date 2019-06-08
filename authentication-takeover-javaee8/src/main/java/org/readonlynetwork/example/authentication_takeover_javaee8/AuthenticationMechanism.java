@@ -43,6 +43,7 @@ public class AuthenticationMechanism implements HttpAuthenticationMechanism {
 	@Inject
 	private IdentityStoreHandler identityStoreHandler;
 
+	@Override
 	public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response,
 			HttpMessageContext httpMessageContext) throws AuthenticationException {
 		

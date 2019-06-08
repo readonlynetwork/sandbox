@@ -37,6 +37,7 @@ public class CounterImpl implements CounterLocal{
 		this.number = 10;
 	}
 
+	@Override
 	public synchronized int getNumber() {
 		return this.number++;
 	}
