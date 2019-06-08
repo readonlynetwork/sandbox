@@ -1,2 +1,2 @@
-# CDI Custom Collection of Inject
-Collection of Marked Class
+# CDI custom collection of qualified classes
+Collection of marked classes
