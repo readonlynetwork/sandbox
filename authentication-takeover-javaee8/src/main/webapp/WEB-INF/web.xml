@@ -90,7 +90,7 @@ limitations under the License.
 		<servlet-name>login</servlet-name>
 		<jsp-file>/WEB-INF/login.jsp</jsp-file>
 		<!-- Precompile .jsp -->
-		<load-on-startup>3</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 	
 	<!-- error page -->
@@ -98,7 +98,7 @@ limitations under the License.
 		<servlet-name>error</servlet-name>
 		<jsp-file>/WEB-INF/error.jsp</jsp-file>
 		<!-- Precompile .jsp -->
-		<load-on-startup>4</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 	
 	<error-page>

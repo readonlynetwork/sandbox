@@ -15,14 +15,17 @@
  */
 package org.readonlynetwork.example.authentication_takeover_javaee8;
 
-import java.util.Objects;
-
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.authentication.mechanism.http.AutoApplySession;
 import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
 import javax.security.enterprise.authentication.mechanism.http.HttpMessageContext;
+import javax.security.enterprise.credential.UsernamePasswordCredential;
+import javax.security.enterprise.identitystore.CredentialValidationResult;
+import javax.security.enterprise.identitystore.CredentialValidationResult.Status;
+import javax.security.enterprise.identitystore.IdentityStoreHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +39,9 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthenticationMechanism implements HttpAuthenticationMechanism {
 	public static final String LOGIN_PAGE = "/WEB-INF/login.jsp";
 	public static final String ERROR_PAGE = "/WEB-INF/error.jsp";
+	
+	@Inject
+	private IdentityStoreHandler identityStoreHandler;
 
 	public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response,
 			HttpMessageContext httpMessageContext) throws AuthenticationException {
@@ -47,29 +53,18 @@ public class AuthenticationMechanism implements HttpAuthenticationMechanism {
         //only for protected pages
 	    if(httpMessageContext.isProtected()) {
 	    	
-	    	//FIXME: use database and hashed password
-	    	//simple user
-		    if(Objects.equals("test", username) && Objects.equals("test1", password)) {
-		    	return httpMessageContext.notifyContainerAboutLogin(UserAndRole.getValidationResult(username));
+	    	if(username != null && password != null) {
+		    	CredentialValidationResult result = identityStoreHandler.validate(new UsernamePasswordCredential(username, password));
+		    	//successful login
+		    	if(result.getStatus() == Status.VALID) {
+		    		return httpMessageContext.notifyContainerAboutLogin(result);
+		    	}
+	    	}else {
+	    		return httpMessageContext.forward(LOGIN_PAGE);
 	    	}
 		    
-		    //admin
-		    if(Objects.equals("admin", username) && Objects.equals("test2", password)){
-		    	return httpMessageContext.notifyContainerAboutLogin(UserAndRole.getValidationResult(username));
-		    }
-		    
-		    //other
-		    if(Objects.equals("other", username) && Objects.equals("other", password)){
-		    	return httpMessageContext.notifyContainerAboutLogin(UserAndRole.getValidationResult(username));
-		    }
-		    
-		    if(username == null && password == null) {
-		    	//forward to login (keep the original url)
-		    	return httpMessageContext.forward(LOGIN_PAGE);
-		    }else {
-		    	//invalid login data
-		    	return httpMessageContext.forward(ERROR_PAGE);
-	    	}
+	    	//invalid login data
+	    	return httpMessageContext.forward(ERROR_PAGE);
 		}
 		
 	    //regular pages
