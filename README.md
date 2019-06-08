@@ -1,2 +1,2 @@
-# Java EE Examples
-(on going)
+# Sandbox
+Just try something in Java/Jakarta EE
