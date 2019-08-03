@@ -17,15 +17,22 @@
 <html lang="en"
 		xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:jsf="http://xmlns.jcp.org/jsf"
-		xmlns:h="http://xmlns.jcp.org/jsf/html">
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+    	xmlns:c="http://xmlns.jcp.org/jsf/core">
 	<head jsf:id="head">
 		<meta charset="UTF-8"/>
-	    <title>Custom resource folder with JSF 2.2+</title>
+	    <title>FacesContext injection in JSF 2.3</title>
 	</head>
 	
 	<body jsf:id="body">
-		<h1>Custom resource folder with JSF 2.2+</h1>
-		<div id="demo">Check web.xml and home.xhtml</div>
-		<h:outputScript library="foo" name="message.js"/>
+		<h1>FacesContext injection in JSF 2.3</h1>
+		
+		<!-- Will show all messages that is not identified.  -->
+		<div><h:messages globalOnly="true" showDetail="true"/></div>
+		
+		<form jsf:id="yourFormId">
+			For check the IP
+			<input jsf:id="yourButtonId" type="submit" jsf:action="#{classForJsf.click}" title="Click here" value="Click here" />
+		</form>
 	</body>
 </html>

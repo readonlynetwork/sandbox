@@ -1,4 +1,4 @@
-<!-- 
+/*
  * Copyright 2019 readonlynetwork.org
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,20 +12,17 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
--->
-<!DOCTYPE html>
-<html lang="en"
-		xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:jsf="http://xmlns.jcp.org/jsf"
-		xmlns:h="http://xmlns.jcp.org/jsf/html">
-	<head jsf:id="head">
-		<meta charset="UTF-8"/>
-	    <title>Custom resource folder with JSF 2.2+</title>
-	</head>
-	
-	<body jsf:id="body">
-		<h1>Custom resource folder with JSF 2.2+</h1>
-		<div id="demo">Check web.xml and home.xhtml</div>
-		<h:outputScript library="foo" name="message.js"/>
-	</body>
-</html>
+ */
+package org.readonlynetwork.example.jsf_facescontext_injection;
+
+import javax.faces.annotation.FacesConfig;
+
+/**
+ * Activate injection and JSF 2.3
+ * 
+ * @author readonlynetwork.org
+ */
+@FacesConfig
+public class JsfConfig {
+
+}

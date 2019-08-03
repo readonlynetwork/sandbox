@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- 
- * Copyright 2019 readonlynetwork.org
+Copyright 2019 readonlynetwork.org
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 -->
-<!DOCTYPE html>
-<html lang="en"
-		xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:jsf="http://xmlns.jcp.org/jsf"
-		xmlns:h="http://xmlns.jcp.org/jsf/html">
-	<head jsf:id="head">
-		<meta charset="UTF-8"/>
-	    <title>Custom resource folder with JSF 2.2+</title>
-	</head>
-	
-	<body jsf:id="body">
-		<h1>Custom resource folder with JSF 2.2+</h1>
-		<div id="demo">Check web.xml and home.xhtml</div>
-		<h:outputScript library="foo" name="message.js"/>
-	</body>
-</html>
+<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"
+       bean-discovery-mode="all"
+       version="2.0">
+       
+</beans>
