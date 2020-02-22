@@ -1,2 +1,2 @@
 # JPA and Entity
-Simple example with Thorntail
+TODO: Simple example with Thorntail 2.6
